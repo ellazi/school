@@ -1,7 +1,7 @@
 class StudentsView
   def display(students)
     students.each_with_index do |student, index|
-      puts "#{index + 1} - #{student.name.capitalize} is in course #{student.course.id}"
+      puts "#{index + 1} - #{student.name.capitalize} is in course #{student.course_id.zero? ? "not assigned" : student.course_id}"
     end
   end
 

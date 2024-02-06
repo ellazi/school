@@ -1,8 +1,7 @@
 require_relative 'student'
 
 class Course
-  attr_reader :students
-  attr_accessor :id
+  attr_accessor :id, :n_hours, :capacity, :students
 
   class FullCourse < Exception; end
 
@@ -21,7 +20,7 @@ class Course
     if full?
       fail FullCourse, "Course is full"
     else
-      student.course = self
+      student.course_id = self.id
       @students << student
     end
   end

@@ -5,11 +5,12 @@ class CourseRepository
   def initialize(csv_path)
     @csv_path = csv_path
     @courses = []
+    @next_id = 1
     load_csv
   end
 
-  def find(index)
-    @course[index]
+  def find(id)
+    @courses.find { |course| course.id == id }
   end
 
   def create(course)
@@ -32,9 +33,8 @@ class CourseRepository
   def load_csv
     CSV.foreach(@csv_path, headers: true, header_converters: :symbol) do |row|
       row[:id] = row[:id].to_i
-      row[:capacity] = row[:capacity].to_i
       row[:n_hours] = row[:n_hours].to_i
-      p row
+      row[:capacity] = row[:capacity].to_i
       course = Course.new(row)
       @courses << course
     end

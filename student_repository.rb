@@ -12,6 +12,7 @@ class StudentRepository
   end
 
   def add(student)
+    puts student
     student.id = @next_id
     @students << student
     @next_id += 1
@@ -19,7 +20,8 @@ class StudentRepository
   end
 
   def add_to_course(student, course)
-    student.course = course
+    student.course_id = course.id
+    save_csv
   end
 
   def all
@@ -41,9 +43,10 @@ class StudentRepository
       row[:id] = row[:id].to_i
       row[:age] = row[:age].to_i
       row[:level] = row[:level].to_f
+      row[:course_id] = row[:course_id].to_i
       student = Student.new(row)
-      course = @repo.find(row[:course_id].to_i)
-      student.course = course
+      course = @repo.find(row[:course_id])
+      course.add(student)
       @students << student
     end
 
@@ -54,7 +57,7 @@ class StudentRepository
     CSV.open(@csv_path, 'wb') do |csv|
       csv << ["id", "name", "age", "level", "course_id"]
       @students.each do |student|
-        csv << [student.id, student.name, student.age, student.level, student.course.id]
+        csv << [student.id, student.name, student.age, student.level, student.course_id]
       end
     end
   end

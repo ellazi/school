@@ -15,4 +15,14 @@ class CoursesView
     puts "How many students?"
     gets.chomp.to_i
   end
+
+  def ask_user_course_index
+    puts "Which course?"
+    gets.chomp.to_i - 1
+  end
+
+  def ask_user_to_select_student
+    puts "Which student?"
+    gets.chomp.to_i - 1
+  end
 end

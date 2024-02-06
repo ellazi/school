@@ -1,8 +1,10 @@
 id,name,age,level,course_id
 1,john,25,5.2,1
-2,susan,33,4.0,1
+2,susan,33,4.1,1
 3,janette,35,4.5,1
 4,elsa,62,3.7,2
 5,tom,40,8.0,2
 6,luke,27,6.5,2
 7,filip,27,5.7,2
+8,laura,23,7.0,3
+9,Simon,24,8.0,3
